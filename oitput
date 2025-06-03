@@ -1,0 +1,65 @@
+Sending build context to Docker daemon  377.4MB
+Step 1/21 : FROM nvidia/cuda:11.8.0-devel-ubuntu22.04
+ ---> 6f9cc9f1ba9e
+Step 2/21 : RUN apt-get update && apt-get install -y apt-utils wget git gcc g++ make cmake
+ ---> Using cache
+ ---> 090914534c73
+Step 3/21 : RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh &&     bash /tmp/miniconda.sh -b -p /opt/conda &&     rm /tmp/miniconda.sh &&     /opt/conda/bin/conda clean -afy
+ ---> Using cache
+ ---> f26a7c445368
+Step 4/21 : ENV PATH="/opt/conda/bin:$PATH"
+ ---> Using cache
+ ---> 257646d7a7c2
+Step 5/21 : ENV CUDA_HOME=/usr/local/cuda
+ ---> Using cache
+ ---> 421a77b591bc
+Step 6/21 : ENV LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+ ---> Using cache
+ ---> eea32fc44278
+Step 7/21 : ENV TCNN_CUDA_ARCHITECTURES=86
+ ---> Using cache
+ ---> cb8651720a6d
+Step 8/21 : COPY sdf/env.sh /opt/sdf_env.sh
+ ---> Using cache
+ ---> f92d2a282e12
+Step 9/21 : COPY splat/env.sh /opt/splat_env.sh
+ ---> Using cache
+ ---> 4c1eeacc8659
+Step 10/21 : COPY isaac_sim/env.sh /opt/isaac_sim_env.sh
+ ---> Using cache
+ ---> 477b8c356779
+Step 11/21 : COPY sdf /home/sabin.grube@local.eurecat.org/DRAWER/sdf
+ ---> Using cache
+ ---> bf14507df974
+Step 12/21 : COPY splat /home/sabin.grube@local.eurecat.org/DRAWER/splat
+ ---> Using cache
+ ---> 2c96af0b6fa3
+Step 13/21 : COPY isaac_sim /home/sabin.grube@local.eurecat.org/DRAWER/isaac_sim
+ ---> Using cache
+ ---> 9cc20379acf7
+Step 14/21 : WORKDIR /home/sabin.grube@local.eurecat.org/DRAWER/sdf
+ ---> Using cache
+ ---> d617f3ecf4b6
+Step 15/21 : RUN bash -c "source /opt/sdf_env.sh"
+ ---> Using cache
+ ---> 943e7d30c8bc
+Step 16/21 : WORKDIR /home/sabin.grube@local.eurecat.org/DRAWER/splat
+ ---> Using cache
+ ---> 62daf95eee38
+Step 17/21 : RUN bash -c "source /opt/splat_env.sh"
+ ---> Using cache
+ ---> 644151a3e68c
+Step 18/21 : WORKDIR /home/sabin.grube@local.eurecat.org/DRAWER/isaac_sim
+ ---> Using cache
+ ---> 5bcebf2d58a5
+Step 19/21 : RUN bash -c "source /opt/isaac_sim_env.sh"
+ ---> Using cache
+ ---> fe52afd30d00
+Step 20/21 : WORKDIR /home/sabin.grube@local.eurecat.org/DRAWER
+ ---> Using cache
+ ---> 8e2cae8b68f2
+Step 21/21 : CMD ["bash"]
+ ---> Using cache
+ ---> 612d26c1162b
+Successfully built 612d26c1162b
+Successfully tagged sabineurecat/drawer:latest

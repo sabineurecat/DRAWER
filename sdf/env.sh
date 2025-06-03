@@ -1,5 +1,7 @@
 conda create --name drawer_sdf -y python=3.8
+source $(conda info --base)/etc/profile.d/conda.sh
 conda activate drawer_sdf
+export TCNN_CUDA_ARCHITECTURES=86
 # ensure gcc version 11.x and nvcc version 11.8
 pip install torch==2.1.2+cu118 torchvision==0.16.2+cu118 --extra-index-url https://download.pytorch.org/whl/cu118
 pip install git+https://github.com/NVlabs/tiny-cuda-nn/#subdirectory=bindings/torch
@@ -20,7 +22,8 @@ pip install pandas
 
 pip install torch-scatter -f https://data.pyg.org/whl/torch-2.1.2+cu118.html
 
-pip install "typeguard==2.12.1"
+# Fix: Ensure typeguard version is compatible with torchtyping
+pip install --force-reinstall "typeguard==2.12.1"
 pip install --upgrade tyro
 
 pip install git+https://github.com/NVlabs/nvdiffrast.git
@@ -37,3 +40,5 @@ pip install visdom
 pip install kaolin==0.15.0 -f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.1.1_cu118.html
 
 pip install transformations
+
+conda deactivate

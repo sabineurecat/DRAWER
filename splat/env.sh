@@ -1,4 +1,5 @@
 conda create --name drawer_splat -y python=3.8
+source $(conda info --base)/etc/profile.d/conda.sh
 conda activate drawer_splat
 
 pip install torch==2.1.2+cu118 torchvision==0.16.2+cu118 --extra-index-url https://download.pytorch.org/whl/cu118
@@ -9,7 +10,8 @@ pip install functorch --no-deps
 pip install torchmetrics[image]
 pip install torchtyping
 
-pip install "typeguard==2.12.1"
+# Fix: Ensure typeguard version is compatible with torchtyping
+pip install --force-reinstall "typeguard==2.12.1"
 pip install --upgrade tyro
 
 
@@ -41,3 +43,5 @@ pip install huggingface-hub==0.24.5
 pip install imageio[ffmpeg]
 
 pip install objaverse
+
+conda deactivate

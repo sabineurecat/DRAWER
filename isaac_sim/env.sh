@@ -1,4 +1,5 @@
 conda create -n isaacsim -y python=3.10
+source $(conda info --base)/etc/profile.d/conda.sh
 conda activate isaacsim
 
 pip install isaacsim[all]==4.5.0 --extra-index-url https://pypi.nvidia.com
@@ -12,3 +13,6 @@ git clone https://github.com/isaac-sim/IsaacLab.git
 cd IsaacLab
 ./isaaclab.sh -i
 cd ..
+
+
+conda deactivate
