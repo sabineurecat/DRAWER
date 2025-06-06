@@ -16,7 +16,7 @@ pip install --upgrade tyro
 
 
 pip install git+https://github.com/NVlabs/nvdiffrast.git
-pip install "git+https://github.com/facebookresearch/pytorch3d.git@stable"
+pip install pytorch3d==0.7.5 -f https://dl.fbaipublicfiles.com/pytorch3d/packaging/wheels/py38_cu118_pyt212/download.html
 
 pip install accelerate==0.31.0
 pip install diffusers==0.29.1
